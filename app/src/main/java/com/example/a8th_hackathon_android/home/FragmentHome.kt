@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.a8th_hackathon_android.R
@@ -19,6 +20,8 @@ class FragmentHome : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: HomeViewModel by viewModels()
 
     // 탭 데이터 리스트
     private val tabList = mutableListOf(
@@ -46,6 +49,11 @@ class FragmentHome : Fragment() {
         setupTabs()
         setupViewPager()
         setupTabPagerSync()
+
+        viewModel.userCoin.observe(viewLifecycleOwner) { coin ->
+            binding.pointText.text = "%,d".format(coin)
+        }
+        viewModel.fetchUserInfo()
 
         // 버튼 클릭 시 FundingActivity로 이동
         binding.btnTogether.setOnClickListener {

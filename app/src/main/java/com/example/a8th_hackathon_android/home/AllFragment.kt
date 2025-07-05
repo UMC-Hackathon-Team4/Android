@@ -15,7 +15,7 @@ import com.example.a8th_hackathon_android.R
 import com.example.a8th_hackathon_android.funding.FundingActivity
 import com.example.a8th_hackathon_android.databinding.FragmentHomeAllBinding
 import com.example.a8th_hackathon_android.project.ProjectAdapter
-import com.example.a8th_hackathon_android.project.ProjectBestAdapter  // ✅ 꼭 바꿔야 함!
+import com.example.a8th_hackathon_android.project.ProjectBestAdapter  // 꼭 바꿔야 함!
 
 class AllFragment : Fragment() {
 
