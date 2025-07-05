@@ -18,6 +18,9 @@ class TabAdapter(
         fun bind(item: TabItem) {
             binding.item = item
 
+            // 아이콘 리소스 ID → ImageView 직접 연결!
+            binding.ivTabIcon.setImageResource(item.icon)
+
             // 선택 상태에 따라 배경 selector 동작
             binding.root.isSelected = item.isSelected
 

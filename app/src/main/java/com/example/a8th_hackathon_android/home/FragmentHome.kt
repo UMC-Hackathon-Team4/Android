@@ -12,6 +12,8 @@ import com.example.a8th_hackathon_android.R
 import com.example.a8th_hackathon_android.databinding.FragmentHomeBinding
 import com.example.a8th_hackathon_android.model.TabItem
 import com.example.a8th_hackathon_android.ui.TabAdapter
+import android.content.Intent
+import com.example.a8th_hackathon_android.FundingActivity
 
 class FragmentHome : Fragment() {
 
@@ -44,6 +46,13 @@ class FragmentHome : Fragment() {
         setupTabs()
         setupViewPager()
         setupTabPagerSync()
+
+
+        // 버튼 클릭 시 FundingActivity로 이동
+        binding.btnTogether.setOnClickListener {
+            val intent = Intent(requireContext(), FundingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupTabs() {
@@ -79,6 +88,7 @@ class FragmentHome : Fragment() {
             }
         })
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
