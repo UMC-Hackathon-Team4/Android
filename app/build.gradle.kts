@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.a8th_hackathon_android"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
