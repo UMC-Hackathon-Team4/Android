@@ -10,7 +10,7 @@ class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> AllFragment()
-            1 -> FavorFragment()
+            1 -> AlarmFragment()
             2 -> ArtFragment()
             3 -> BookFragment()
             else -> GoodsFragment()

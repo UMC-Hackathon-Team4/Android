@@ -21,7 +21,7 @@ class FragmentHome : Fragment() {
     // 탭 데이터 리스트
     private val tabList = mutableListOf(
         TabItem("전체", R.drawable.ic_all, true),
-        TabItem("마감임박", R.drawable.ic_favor),
+        TabItem("마감임박", R.drawable.ic_alarm),
         TabItem("예술", R.drawable.ic_art),
         TabItem("출판", R.drawable.ic_book),
         TabItem("잡화", R.drawable.ic_cart)
@@ -44,6 +44,14 @@ class FragmentHome : Fragment() {
         setupTabs()
         setupViewPager()
         setupTabPagerSync()
+
+        // 버튼 클릭 시 FundingActivity로 이동
+        binding.btnTogether.setOnClickListener {
+            val intent = Intent(requireContext(), FundingActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 
     private fun setupTabs() {
@@ -79,6 +87,7 @@ class FragmentHome : Fragment() {
             }
         })
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

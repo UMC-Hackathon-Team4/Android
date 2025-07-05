@@ -21,10 +21,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+
         }
     }
     compileOptions {
@@ -47,6 +44,8 @@ dependencies {
     implementation(libs.material)
     //implementation ("com.eightbitlab:blurview:1.6.6") //blur 효과를 주기 위한 코드
     implementation(libs.androidx.activity)
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
