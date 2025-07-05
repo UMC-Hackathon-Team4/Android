@@ -16,7 +16,7 @@ class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHol
         return DetailViewHolder(view)
     }
 
-    override fun getItemCount(): Int = 1
+    override fun getItemCount(): Int = 1  // 페이지가 하나라면 1로 고정
 
     override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
         holder.bind()
@@ -29,8 +29,15 @@ class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHol
         private val layoutReward: View = itemView.findViewById(R.id.layoutReward)
 
         fun bind() {
-            showTabContent(0) // 기본은 첫 번째 탭
+            // 초기 상태: 첫 번째 탭(소개) 표시
+            showTabContent(0)
 
+            // 탭 추가
+            tabLayout.addTab(tabLayout.newTab().setText("소개"))
+            tabLayout.addTab(tabLayout.newTab().setText("스토리"))
+            tabLayout.addTab(tabLayout.newTab().setText("리워드"))
+
+            // 탭 선택 리스너
             tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     showTabContent(tab.position)
@@ -41,9 +48,17 @@ class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHol
         }
 
         private fun showTabContent(position: Int) {
-            layoutIntro.visibility = if (position == 0) View.VISIBLE else View.GONE
-            layoutStory.visibility = if (position == 1) View.VISIBLE else View.GONE
-            layoutReward.visibility = if (position == 2) View.VISIBLE else View.GONE
+            // 모든 레이아웃 숨기기
+            layoutIntro.visibility = View.GONE
+            layoutStory.visibility = View.GONE
+            layoutReward.visibility = View.GONE
+
+            // 선택된 탭에 맞게 표시
+            when (position) {
+                0 -> layoutIntro.visibility = View.VISIBLE
+                1 -> layoutStory.visibility = View.VISIBLE
+                2 -> layoutReward.visibility = View.VISIBLE
+            }
         }
     }
 }
