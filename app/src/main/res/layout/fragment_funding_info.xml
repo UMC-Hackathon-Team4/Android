@@ -63,15 +63,17 @@
             android:layout_marginStart="25dp"
             android:layout_marginBottom="4dp"/>
 
-        <Spinner
-            android:id="@+id/spinner_category"
+        <EditText
+            android:id="@+id/et_category"
             android:layout_width="280dp"
             android:layout_height="40dp"
-            android:background="@drawable/bg_card_border_rect"
             android:layout_marginStart="25dp"
+            android:background="@drawable/bg_card_border_rect"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:entries="@array/category_options"/>
+            android:hint="카테고리를 입력해주세요."
+            android:textSize="10sp"
+            android:inputType="text" />
 
         <!-- 목표가격 -->
         <TextView
@@ -105,7 +107,7 @@
             android:paddingEnd="12dp">
 
             <EditText
-                android:id="@+id/edit_goal_price"
+                android:id="@+id/goal_price"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
