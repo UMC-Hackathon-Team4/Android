@@ -7,15 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.a8th_hackathon_android.home.ProjectViewModel
+import com.example.a8th_hackathon_android.R
 import com.example.a8th_hackathon_android.funding.FundingActivity
 import com.example.a8th_hackathon_android.databinding.FragmentHomeAllBinding
 import com.example.a8th_hackathon_android.project.ProjectAdapter
-import com.example.a8th_hackathon_android.project.ProjectItem
+import com.example.a8th_hackathon_android.project.ProjectBestAdapter  // ✅ 꼭 바꿔야 함!
 
 class AllFragment : Fragment() {
 
     private var _binding: FragmentHomeAllBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var adapter: ProjectBestAdapter  //  여기
+    private val viewModel: ProjectViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,30 +36,68 @@ class AllFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // 여기서 binding 으로 뷰 연결
-        // 예: binding.textView.text = "전체 탭!"
 
-
-        //이후 정보 박아서 구현
-        val dummyList = listOf(
-            ProjectItem(R.drawable.dummy_image, "함께손잡기 프로젝트", "창작자들이 만든 손끝의 응원 팔찌", 28239),
-            ProjectItem(R.drawable.dummy_image, "박석옥 작가", "수아에서 연결받은 감각 기반 회화 전시회", 20000),
-            ProjectItem(R.drawable.dummy_image, "따숨협동조합", "정성이 담긴 손뜨개 힐링 담요 제작", 38030)
-        )
-
-        val adapter = ProjectAdapter(dummyList)
+        adapter = ProjectBestAdapter()
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(requireContext())
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        viewModel.bestProjects.observe(viewLifecycleOwner) { list ->
+            adapter.submitList(list) // 타입 딱 맞음!
+        }
+
+        viewModel.getBestProjects()
     }
-
-
-
-
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+
+
+
+//
+//class AllFragment : Fragment() {
+//
+//    private var _binding: FragmentHomeAllBinding? = null
+//    private val binding get() = _binding!!
+//
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View {
+//        _binding = FragmentHomeAllBinding.inflate(inflater, container, false)
+//        return binding.root
+//    }
+//
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        // 여기서 binding 으로 뷰 연결
+//        // 예: binding.textView.text = "전체 탭!"
+//
+//
+//        //이후 정보 박아서 구현
+//        val dummyList = listOf(
+//            ProjectItem(R.drawable.dummy_image, "함께손잡기 프로젝트", "창작자들이 만든 손끝의 응원 팔찌", 28239),
+//            ProjectItem(R.drawable.dummy_image, "박석옥 작가", "수아에서 연결받은 감각 기반 회화 전시회", 20000),
+//            ProjectItem(R.drawable.dummy_image, "따숨협동조합", "정성이 담긴 손뜨개 힐링 담요 제작", 38030)
+//        )
+//
+//        //val adapter = ProjectAdapter(dummyList)
+//        adapter = ProjectAdapter()
+//        binding.recyclerView.adapter = adapter
+//        binding.recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(requireContext())
+//    }
+//
+//
+//
+//
+//
+//
+//
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        _binding = null
+//    }
+//}
