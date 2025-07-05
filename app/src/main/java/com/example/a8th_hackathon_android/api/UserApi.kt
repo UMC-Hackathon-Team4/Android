@@ -1,11 +1,15 @@
 package com.example.a8th_hackathon_android.api
 
 import com.example.a8th_hackathon_android.model.ApiResponse
+import com.example.a8th_hackathon_android.model.TokenRequest
+import com.example.a8th_hackathon_android.model.TokenResponse
 import com.example.a8th_hackathon_android.model.UserInfo
 import com.example.a8th_hackathon_android.model.UserInfoResponse
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface UserApi {
@@ -14,4 +18,10 @@ interface UserApi {
     suspend fun getUserInfo(
         @Header("Authorization") token: String
     ): Response<UserInfoResponse>
+
+    // JWT 발급
+    @POST("/users/token")
+    suspend fun getToken(
+        @Body request: TokenRequest
+    ): Response<TokenResponse>
 }
