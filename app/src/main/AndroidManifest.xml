@@ -11,18 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme._8th_Hackathon_Android">
-
-        <!-- DetailActivity를 앱 시작 액티비티로 설정 -->
         <activity
-            android:name=".DetailActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- 필요하다면 MainActivity는 intent-filter 없이 선언만 유지 가능 -->
-        <activity android:name=".MainActivity" />
     </application>
+
 </manifest>
