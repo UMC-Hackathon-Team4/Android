@@ -11,8 +11,7 @@
 **📌 진행 사항 확인**
 
 - **Notion**에서 자세한 진행사항 보러가기 ->
-  [![NOTION](https://img.shields.io/badge/Notion-000000?style=flat-
- square&logo=notion&logoColor=white)](https://www.notion.so/team-227e48b7f63180c22bfdd)
+  [![NOTION](https://img.shields.io/badge/Notion-000000?style=flat-square&logo=notion&logoColor=white)](https://www.notion.so/Team-227e48b7f6318878FA2C0D90C222Bfdd)
   <br>
 
 ### 🙌 팀원 소개
