@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- 대표 이미지 -->
+        <ImageView
+            android:id="@+id/imageMain"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:background="@android:color/darker_gray" />
+
+        <!-- 대표 이미지 제외 패딩 추가 -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingHorizontal="15dp"
+             android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <!-- 카테고리 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:id="@+id/tv_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="잡화"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_category_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/ic_arrow_right" />
+            </LinearLayout>
+
+            <!-- 구분선 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A0A0A0"
+                android:layout_marginTop="10dp" />
+
+            <!-- 제목 -->
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="감각 기반 창작자들의 컬러링북 북펀딩\n&lt;너의 감각이 좋아&gt;"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp" />
+
+            <!-- 설명 -->
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="다양한 감각으로 표현된 세상, 색으로 공감해보세요."
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp" />
+
+            <!-- 참여 수 -->
+            <TextView
+                android:id="@+id/tv_participants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="18,000명이 함께해요"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp" />
+
+            <!-- 달성 금액 -->
+            <TextView
+                android:id="@+id/tv_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="223,203,000원 달성"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:gravity="end"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="15dp" />
+
+            <!-- 구분선 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A0A0A0"
+                android:layout_marginTop="10dp" />
+
+            <!-- 배송 정보 섹션 -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="16dp">
+
+                <!-- 배송예정일 -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/tv_shipping_title"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="배송예정일"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tv_shipping_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="펀딩 종료 후 약 3주 내 순차 발송"
+                        android:textSize="12sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <!-- 포장 방식 -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/tv_packing_title"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="포장 방식"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tv_packing_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="친환경 종이 포장 사용"
+                        android:textSize="12sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <!-- 배송비 -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_delivery_title"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="배송비"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tv_delivery_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="무료 (도서산간 지역은 추가 배송일이 소요될 수 있습니다)"
+                        android:textSize="12sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 구분선 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A0A0A0"
+                android:layout_marginTop="16dp" />
+
+            <!-- 팀 정보 -->
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:background="@drawable/bg_rounded_border"
+
+                android:layout_marginVertical="20dp">
+
+                <!-- 팀 이미지 -->
+                <ImageView
+                    android:id="@+id/iv_team_image"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/bg_circle_mask"
+                    android:contentDescription="팀 이미지" />
+
+                <!-- 팀 정보 영역 -->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_team_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="마주보기팀"
+                        android:layout_marginVertical="3dp"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tv_team_intro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="&lt;너의 감각이 좋아&gt;는 감각 기반으로 창작하는 다섯 명의 작가들이 함께 만든 첫 번째 컬러링북입니다.\n우리는 장애를 개념이 아닌 경험으로 나누며, 각자의 차이를 존중하는 세상을 꿈꿉니다."
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 탭 레이아웃 -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                app:tabTextColor="@color/black"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!-- 탭 내용 영역 -->
+            <FrameLayout
+                android:id="@+id/tabContentFrame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- 소개 탭 -->
+                <LinearLayout
+                    android:id="@+id/layoutIntro"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="감각 기반 창작자들의 컬러링북 북펀딩\n&lt;너의 감각이 좋아&gt;"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="16dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="&lt;너의 감각이 좋아&gt;는 감각 기반 창작자들의 개성과 감성을 담은 컬러링북입니다.\n색을 입히며 세상을 공감하고, 창작의 기쁨을 느껴보세요."
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="8dp" />
+
+                    <!-- 소개 리스트 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• 시각 장애 작가가 만든 촉감적 형태 드로잉\n• 청각장애 작가의 조용한 자연 풍경 스케치\n• 심리적 감각 표현을 시도한 감정 선화"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="이 책은 단순한 컬러링북을 넘어, 다양한 감각과 표현 방식을 존중하는 새로운 예술 경험을 제안합니다."
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="8dp" />
+                </LinearLayout>
+
+                <!-- 스토리 탭 -->
+                <LinearLayout
+                    android:id="@+id/layoutStory"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="스토리 탭 내용입니다."
+                        android:textSize="14sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <!-- 리워드 탭 -->
+                <LinearLayout
+                    android:id="@+id/layoutReward"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="리워드 탭 내용입니다."
+                        android:textSize="14sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- 구분선 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A0A0A0"
+                android:layout_marginTop="20dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
