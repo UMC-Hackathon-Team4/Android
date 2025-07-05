@@ -8,6 +8,8 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ProjectApi {
     @POST("/projects")
@@ -16,5 +18,11 @@ interface ProjectApi {
     ): Response<ProjectRegisterResponse>
     @GET("/projects/best")
     suspend fun getBestProjects(): Response<ProjectBestResponse>
+
+    @GET("/projects/{projectId}")
+    suspend fun getProjectDetail(
+        @Path("projectId") projectId: Long,
+        @Query("type") type: String // detail, intro, story, reward 중 하나
+    ): Response<ProjectDetailResponse>
 }
 

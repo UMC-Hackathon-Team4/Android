@@ -1,26 +1,37 @@
-package com.example.a8th_hackathon_android
+package com.example.a8th_hackathon_android.detail
 
+import DetailPagerAdapter
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
-import android.os.Handler
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil.setContentView
+import androidx.lifecycle.lifecycleScope
+import com.example.a8th_hackathon_android.R
+import com.example.a8th_hackathon_android.api.ProjectDetail
+import com.example.a8th_hackathon_android.api.RetrofitClient
 import com.example.a8th_hackathon_android.databinding.ActivityDetailBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.launch
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private lateinit var adapter: DetailPagerAdapter
+
+    private var currentProjectDetail: ProjectDetail? = null
 
     private val rewards = mutableListOf(
         RewardData("1,000원", "후원만 하기", -1),
@@ -35,27 +46,63 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = DetailPagerAdapter(rewards) // 전역 adapter 초기화!
-        binding.viewPager.adapter = adapter
+        binding.toolbar.setNavigationOnClickListener { finish() }
 
-        binding.btnJoin.setOnClickListener {
-            showRewardBottomSheet()
+        val projectId = intent.getLongExtra("projectId", -1)
+        if (projectId != -1L) {
+            loadProjectDetail(projectId)
+        }
+
+        binding.btnJoin.setOnClickListener { showRewardBottomSheet() }
+    }
+
+    private fun loadProjectDetail(projectId: Long) {
+        lifecycleScope.launch {
+            try {
+                val response = RetrofitClient.projectApi.getProjectDetail(projectId, "detail")
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    if (body?.isSuccess == true) {
+                        val detail = body.result
+                        currentProjectDetail = detail
+                        adapter = DetailPagerAdapter(rewards, detail)
+                        binding.viewPager.adapter = adapter
+
+                    } else {
+                        // 서버가 isSuccess=false로 응답했을 때
+                        Log.e("DetailActivity", "서버 응답 실패: ${body?.message}")
+                        showToast("프로젝트 정보를 불러오지 못했습니다: ${body?.message ?: "알 수 없음"}")
+                    }
+                } else {
+                    // HTTP 오류 발생 시 (ex. 404, 500 등)
+                    Log.e("DetailActivity", "HTTP 실패: code=${response.code()}, message=${response.message()}")
+                    showToast("프로젝트 정보를 불러오지 못했습니다 (HTTP ${response.code()})")
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                showToast("네트워크 오류가 발생했습니다.")
+            }
         }
     }
+
+
     private fun showRewardBottomSheet() {
         val dialog = BottomSheetDialog(this)
         val sheetView = layoutInflater.inflate(R.layout.bottomsheet_reward, null)
         val layoutRewards = sheetView.findViewById<LinearLayout>(R.id.layoutRewards)
-        val btnConfirm = sheetView.findViewById<Button>(R.id.btnBottomCheck)  // 확인 버튼
-        val selectedItems = linkedSetOf<View>()  // 순서를 기억하는 LinkedHashSet로 변경
+        val btnConfirm = sheetView.findViewById<Button>(R.id.btnBottomCheck)
+        val selectedItems = linkedSetOf<View>()
 
         rewards.forEach { reward ->
             val itemView = layoutInflater.inflate(R.layout.item_reward_bottomsheet, layoutRewards, false)
             val tvTitle = itemView.findViewById<TextView>(R.id.tvRewardTitle)
             val tvDesc = itemView.findViewById<TextView>(R.id.tvRewardDesc)
             val ivCheck = itemView.findViewById<ImageView>(R.id.ivCheck)
-
             val tvLeftCount = itemView.findViewById<TextView>(R.id.tvRewardLeftCount)
+
+            tvTitle.text = reward.title
+            tvDesc.text = reward.description
+
             if (reward.leftCount > 0) {
                 tvLeftCount.visibility = View.VISIBLE
                 tvLeftCount.text = "${reward.leftCount}개 남음"
@@ -63,56 +110,39 @@ class DetailActivity : AppCompatActivity() {
                 tvLeftCount.visibility = View.GONE
             }
 
-
-            tvTitle.text = reward.title
-            tvDesc.text = reward.description
-            ivCheck.setImageResource(R.drawable.ic_check_circle_outline)
-
             itemView.setOnClickListener {
-                if (selectedItems.contains(itemView)) {
-                    ivCheck.setImageResource(R.drawable.ic_check_circle_outline)
-                    selectedItems.remove(itemView)
-                } else {
-                    ivCheck.setImageResource(R.drawable.ic_check_circle_filled)
-                    selectedItems.add(itemView)
-                }
+                toggleSelection(itemView, selectedItems, ivCheck)
                 updateConfirmButtonState(btnConfirm, selectedItems.isNotEmpty())
             }
 
             layoutRewards.addView(itemView)
         }
 
-        updateConfirmButtonState(btnConfirm, false)  // 처음엔 선택 없음
-
+        updateConfirmButtonState(btnConfirm, false)
         btnConfirm.setOnClickListener {
             if (selectedItems.isNotEmpty()) {
-                dialog.dismiss()  // 리워드 바텀시트 닫기
-
-                // 리워드 리스트 순서(rewards)에 맞춰 선택된 아이템 정렬
+                dialog.dismiss()
                 val selectedRewards = rewards.filter { reward ->
                     selectedItems.any { item ->
-                        val title = item.findViewById<TextView>(R.id.tvRewardTitle)?.text?.toString()
-                        title == reward.title
+                        item.findViewById<TextView>(R.id.tvRewardTitle)?.text?.toString() == reward.title
                     }
                 }
-
                 showQuantityBottomSheet(selectedRewards)
             }
         }
 
         dialog.setContentView(sheetView)
         dialog.show()
-        dialog.window?.clearFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        dialog.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
     }
 
-
-    private fun updateConfirmButtonState(button: Button, hasSelection: Boolean) {
-        if (hasSelection) {
-            button.setBackgroundColor(Color.parseColor("#699DE5"))
-            button.isEnabled = true
+    private fun toggleSelection(view: View, selected: MutableSet<View>, checkIcon: ImageView) {
+        if (selected.contains(view)) {
+            checkIcon.setImageResource(R.drawable.ic_check_circle_outline)
+            selected.remove(view)
         } else {
-            button.setBackgroundColor(Color.parseColor("#D0D0D0"))
-            button.isEnabled = false
+            checkIcon.setImageResource(R.drawable.ic_check_circle_filled)
+            selected.add(view)
         }
     }
 
@@ -133,8 +163,6 @@ class DetailActivity : AppCompatActivity() {
             val btnPlus = itemView.findViewById<View>(R.id.btnPlus)
 
             tvDesc.text = reward.description
-            tvPrice.text = reward.title  // 금액
-
             var quantity = 1
             tvQuantity.text = quantity.toString()
             quantities[reward] = quantity
@@ -149,7 +177,6 @@ class DetailActivity : AppCompatActivity() {
                 }
             }
 
-
             btnMinus.setOnClickListener {
                 if (quantity > 1) {
                     quantity--
@@ -160,79 +187,64 @@ class DetailActivity : AppCompatActivity() {
                 }
             }
 
+            updateRewardPrice(tvPrice, reward, quantity)
             layoutQuantities.addView(itemView)
         }
 
         updateTotalPrice(btnPayment, quantities)
 
         btnPayment.setOnClickListener {
-            quantities.forEach { (reward, purchasedQuantity) ->
+            quantities.forEach { (reward, qty) ->
                 if (reward.leftCount > 0) {
-                    reward.leftCount -= purchasedQuantity
-                    if (reward.leftCount < 0) reward.leftCount = 0
+                    reward.leftCount = maxOf(0, reward.leftCount - qty)
                 }
             }
-
+            adapter.notifyDataSetChanged() // 리워드 남은 수량 UI 갱신
             dialog.dismiss()
-
-            // 여기서 ViewPager의 어댑터를 교체해 강제로 리프레시
-            adapter = DetailPagerAdapter(rewards)
-            binding.viewPager.adapter = adapter
-
             showCompletionDialog()
         }
 
         dialog.setContentView(sheetView)
         dialog.show()
-        dialog.window?.clearFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        dialog.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
     }
 
     private fun updateTotalPrice(button: Button, quantities: Map<RewardData, Int>) {
-        var total = 0
-        quantities.forEach { (reward, count) ->
-            val price = parseAmount(reward.title)
-            total += price * count
-        }
+        val total = quantities.entries.sumOf { (reward, qty) -> parseAmount(reward.title) * qty }
         button.text = "총 %,d원 함께하기".format(total)
     }
 
     private fun parseAmount(text: String): Int {
-        return text.replace(",", "")
-            .replace("원", "")
-            .replace("+", "")
-            .trim()
-            .toIntOrNull() ?: 0
+        return text.replace(",", "").replace("원", "").trim().toIntOrNull() ?: 0
     }
 
     private fun updateRewardPrice(tvPrice: TextView, reward: RewardData, quantity: Int) {
-        val pricePerUnit = parseAmount(reward.title)
-        val totalPrice = pricePerUnit * quantity
+        val totalPrice = parseAmount(reward.title) * quantity
         tvPrice.text = "%,d원".format(totalPrice)
     }
 
     private fun showCompletionDialog() {
-        val dialog = Dialog(this)
-        val view = layoutInflater.inflate(R.layout.dialog_completion, null)
-        dialog.setContentView(view)
+        val dialog = Dialog(this).apply {
+            setContentView(layoutInflater.inflate(R.layout.dialog_completion, null))
+            window?.apply {
+                setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
+                setGravity(Gravity.CENTER)
+            }
+            show()
+        }
+        Handler(Looper.getMainLooper()).postDelayed({ dialog.dismiss() }, 3000)
+    }
 
-        // Dialog의 배경을 둥근 모서리가 포함된 투명 배경으로 설정
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    private fun updateConfirmButtonState(button: Button, hasSelection: Boolean) {
+        button.apply {
+            setBackgroundColor(if (hasSelection) Color.parseColor("#699DE5") else Color.parseColor("#D0D0D0"))
+            isEnabled = hasSelection
+        }
+    }
 
-        // Dialog 크기를 wrap_content로 해서 중앙 배치되도록 설정
-        dialog.window?.setLayout(
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
-
-        // Dialog를 화면 중앙에 위치
-        dialog.window?.setGravity(Gravity.CENTER)
-
-        dialog.show()
-
-        // 3초 후 자동 종료
-        Handler(Looper.getMainLooper()).postDelayed({
-            dialog.dismiss()
-        }, 3000)
+    private fun showToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     data class RewardData(val title: String, val description: String, var leftCount: Int)

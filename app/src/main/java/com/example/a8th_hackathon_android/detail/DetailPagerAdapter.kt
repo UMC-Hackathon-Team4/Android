@@ -1,27 +1,34 @@
-package com.example.a8th_hackathon_android
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.a8th_hackathon_android.R
+import com.example.a8th_hackathon_android.api.ProjectDetail
+import com.example.a8th_hackathon_android.detail.DetailActivity
 import com.google.android.material.tabs.TabLayout
 
-class DetailPagerAdapter(private val rewards: List<DetailActivity.RewardData>) : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHolder>() {
+class DetailPagerAdapter(
+    private var rewards: List<DetailActivity.RewardData>,
+    private var detail: ProjectDetail
+) : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_viewpager_detail, parent, false)
         return DetailViewHolder(view)
     }
 
-    override fun getItemCount(): Int = 1  // 페이지가 하나라면 1로 고정
+    override fun getItemCount(): Int = 1  // 페이지는 하나만 사용
 
     override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
         holder.bind()
+    }
+
+    fun updateData(newRewards: List<DetailActivity.RewardData>, newDetail: ProjectDetail) {
+        rewards = newRewards
+        detail = newDetail
+        notifyDataSetChanged() // RecyclerView에 데이터 변경 알림
     }
 
     inner class DetailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,7 +38,6 @@ class DetailPagerAdapter(private val rewards: List<DetailActivity.RewardData>) :
         private val layoutReward: View = itemView.findViewById(R.id.layoutReward)
 
         init {
-            // 탭은 ViewHolder 생성 시 한 번만 초기화
             tabLayout.removeAllTabs()
             tabLayout.addTab(tabLayout.newTab().setText("소개"))
             tabLayout.addTab(tabLayout.newTab().setText("스토리"))
@@ -47,27 +53,43 @@ class DetailPagerAdapter(private val rewards: List<DetailActivity.RewardData>) :
         }
 
         fun bind() {
-            showTabContent(0) // 탭 초기 표시
+            showTabContent(0)
+            bindProjectDetail()
+            bindRewards()
+        }
 
+        private fun bindProjectDetail() {
+            itemView.findViewById<TextView>(R.id.tv_title).text = detail.projectTitle
+            itemView.findViewById<TextView>(R.id.tv_description).text = detail.summary
+            itemView.findViewById<TextView>(R.id.tv_participants).text = "${detail.supportersCount}명이 함께해요"
+            itemView.findViewById<TextView>(R.id.tv_amount).text = "${detail.percentage} 달성"
+            itemView.findViewById<TextView>(R.id.tv_category).text = detail.category
+        }
+
+        private fun bindRewards() {
             val rewardContainer = itemView.findViewById<LinearLayout>(R.id.layoutReward_item)
             rewardContainer.visibility = View.VISIBLE
             rewardContainer.removeAllViews()
 
             val inflater = LayoutInflater.from(itemView.context)
-            for (reward in rewards) {
+            rewards.forEach { reward ->
                 val rewardView = inflater.inflate(R.layout.item_reward, rewardContainer, false)
                 rewardView.findViewById<TextView>(R.id.tvRewardTitle).text = reward.title
                 rewardView.findViewById<TextView>(R.id.tvRewardDesc).text = reward.description
 
                 val tvLeftCount = rewardView.findViewById<TextView>(R.id.tvRewardLeftCount)
-                if (reward.leftCount > 0) {
-                    tvLeftCount.visibility = View.VISIBLE
-                    tvLeftCount.text = "${reward.leftCount}개 남음"
-                } else if (reward.leftCount != -1) {
-                    tvLeftCount.visibility = View.VISIBLE
-                    tvLeftCount.text = "품절"
-                } else {
-                    tvLeftCount.visibility = View.GONE // 후원하기 예외 처리
+                when {
+                    reward.leftCount > 0 -> {
+                        tvLeftCount.visibility = View.VISIBLE
+                        tvLeftCount.text = "${reward.leftCount}개 남음"
+                    }
+                    reward.leftCount == 0 -> {
+                        tvLeftCount.visibility = View.VISIBLE
+                        tvLeftCount.text = "품절"
+                    }
+                    else -> {
+                        tvLeftCount.visibility = View.GONE
+                    }
                 }
 
                 rewardContainer.addView(rewardView)
@@ -86,5 +108,4 @@ class DetailPagerAdapter(private val rewards: List<DetailActivity.RewardData>) :
             }
         }
     }
-
 }

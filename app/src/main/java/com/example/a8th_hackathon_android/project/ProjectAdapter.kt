@@ -1,11 +1,12 @@
 package com.example.a8th_hackathon_android.project
 
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a8th_hackathon_android.databinding.ItemProjectBinding
-import com.example.a8th_hackathon_android.project.ProjectItem
+import com.example.a8th_hackathon_android.detail.DetailActivity
 
 class ProjectAdapter(
     private val items: List<ProjectItem>
@@ -20,6 +21,15 @@ class ProjectAdapter(
             binding.tvDesc.text = item.description
             binding.pointText.text = item.participants.toString()
             // 하트 등 다른 UI 처리 필요시 여기에!
+
+            binding.root.setOnClickListener {
+                val context = it.context
+                val intent = Intent(context, DetailActivity::class.java).apply {
+                    // putExtra("projectId", item.projectId)
+                    putExtra("projectId", 1L)
+                }
+                context.startActivity(intent)
+            }
         }
     }
 
