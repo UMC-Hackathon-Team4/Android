@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 
-class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHolder>() {
+class DetailPagerAdapter(private val rewards: List<DetailActivity.RewardData>) : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_viewpager_detail, parent, false)
@@ -30,15 +30,13 @@ class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHol
         private val layoutStory: View = itemView.findViewById(R.id.layoutStory)
         private val layoutReward: View = itemView.findViewById(R.id.layoutReward)
 
-        fun bind() {
-            showTabContent(0)
-
-            // 탭 설정
+        init {
+            // 탭은 ViewHolder 생성 시 한 번만 초기화
+            tabLayout.removeAllTabs()
             tabLayout.addTab(tabLayout.newTab().setText("소개"))
             tabLayout.addTab(tabLayout.newTab().setText("스토리"))
             tabLayout.addTab(tabLayout.newTab().setText("리워드"))
 
-            // 탭 선택 리스너
             tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     showTabContent(tab.position)
@@ -46,19 +44,14 @@ class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHol
                 override fun onTabUnselected(tab: TabLayout.Tab) {}
                 override fun onTabReselected(tab: TabLayout.Tab) {}
             })
+        }
 
-            // 리워드 데이터 추가
+        fun bind() {
+            showTabContent(0) // 탭 초기 표시
+
             val rewardContainer = itemView.findViewById<LinearLayout>(R.id.layoutReward_item)
             rewardContainer.visibility = View.VISIBLE
             rewardContainer.removeAllViews()
-
-            val rewards = listOf(
-                RewardData("1,000원", "후원만 하기", ""),
-                RewardData("10,000원", "[응원 펀딩] 감사카드+ 작가 엽서 1종", "36개 남음"),
-                RewardData("20,000원", "[기본 리워드] 제작 주머니 1개 + 감사카드", "12개 남음"),
-                RewardData("30,000원", "[응원 리워드] 주머니 1개 + 엽서 세트 (3종) + 감사카드", "5개 남음"),
-                RewardData("50,000원", "[스페셜 리워드] 주머니 2개(색상 랜덤) + 손글씨 메시지 카드 + 엽서 세트 + 제작 과정 미니 영상 링크", "2개 남음")
-            )
 
             val inflater = LayoutInflater.from(itemView.context)
             for (reward in rewards) {
@@ -67,25 +60,25 @@ class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHol
                 rewardView.findViewById<TextView>(R.id.tvRewardDesc).text = reward.description
 
                 val tvLeftCount = rewardView.findViewById<TextView>(R.id.tvRewardLeftCount)
-                if (reward.leftCount.isNotEmpty()) {
+                if (reward.leftCount > 0) {
                     tvLeftCount.visibility = View.VISIBLE
-                    tvLeftCount.text = reward.leftCount
+                    tvLeftCount.text = "${reward.leftCount}개 남음"
+                } else if (reward.leftCount != -1) {
+                    tvLeftCount.visibility = View.VISIBLE
+                    tvLeftCount.text = "품절"
                 } else {
-                    tvLeftCount.visibility = View.GONE
+                    tvLeftCount.visibility = View.GONE // 후원하기 예외 처리
                 }
 
                 rewardContainer.addView(rewardView)
             }
         }
 
-
         private fun showTabContent(position: Int) {
-            // 모든 레이아웃 숨기기
             layoutIntro.visibility = View.GONE
             layoutStory.visibility = View.GONE
             layoutReward.visibility = View.GONE
 
-            // 선택된 탭에 맞게 표시
             when (position) {
                 0 -> layoutIntro.visibility = View.VISIBLE
                 1 -> layoutStory.visibility = View.VISIBLE
@@ -93,4 +86,5 @@ class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHol
             }
         }
     }
+
 }

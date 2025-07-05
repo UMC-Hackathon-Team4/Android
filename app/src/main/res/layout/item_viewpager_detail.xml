@@ -288,7 +288,6 @@
                 <LinearLayout
                     android:id="@+id/layoutIntro"
                     android:orientation="vertical"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp">
@@ -312,6 +311,20 @@
                         android:textSize="12sp"
                         android:textColor="@color/black"
                         android:layout_marginTop="8dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#A0A0A0"
+                        android:layout_marginTop="30dp" />
+
+                    <ImageView
+                        android:id="@+id/layoutIntro_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        android:layout_marginTop="20dp"
+                        android:background="@android:color/darker_gray" />
                 </LinearLayout>
 
 
@@ -343,6 +356,13 @@
                         android:text="“네가 보는 세상은 어떤 색이야?”\n\n누군가의 눈, 누군가의 손, 누군가의 마음으로 완성되는 그림책\n&lt;너의 감각이 좋아&gt;는 서로 다른 감각을 가진 창작자들이 모여 만든 함께 그리는 책\n\n작가들은 시끄러운 세상을 조용하게 바라보거나, 보이지 않는 것들을 촉감으로 상상하며, 형태보다 감정을 먼저 그립니다.\n이 책은 그들이 느낀 세계의 ‘선’을, 여러분의 색으로 완성할 수 있도록 돕습니다.\n\n장애와 비장애, 경계없는 창작과 치유의 공간\n이 작은 책 한 권이, 감각을 이해하고 연결하는 다리가 되길 바랍니다."
                         android:textSize="12sp"
                         android:textColor="@color/black" />
+
+                    <!-- 구분선 -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#A0A0A0"
+                        android:layout_marginVertical="20dp" />
                 </LinearLayout>
 
 
@@ -350,36 +370,39 @@
                 <LinearLayout
                     android:id="@+id/layoutReward"
                     android:orientation="vertical"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="리워드 선택"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="10dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="리워드 선택"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="10dp" />
 
-                <LinearLayout
-                    android:id="@+id/layoutReward_item"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:id="@+id/layoutReward_item"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <!-- 구분선 -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#A0A0A0"
+                        android:layout_marginVertical="20dp" />
 
                 </LinearLayout>
 
             </FrameLayout>
 
-            <!-- 구분선 -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#A0A0A0"
-                android:layout_marginVertical="20dp" />
+
 
         </LinearLayout>
     </LinearLayout>

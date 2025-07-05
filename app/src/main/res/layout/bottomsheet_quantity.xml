@@ -12,7 +12,7 @@
         android:layout_height="4dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/bg_bottomsheet_handle"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="36dp"/>
 
     <LinearLayout
         android:id="@+id/layoutQuantities"
