@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.a8th_hackathon_android.MainActivity
 import com.example.a8th_hackathon_android.databinding.ActivityFundingBinding
 
 class FundingActivity : AppCompatActivity() {
@@ -32,6 +33,9 @@ class FundingActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
 }
