@@ -47,6 +47,12 @@ class FragmentHome : Fragment() {
         setupViewPager()
         setupTabPagerSync()
 
+        // 버튼 클릭 시 FundingActivity로 이동
+        binding.btnTogether.setOnClickListener {
+            val intent = Intent(requireContext(), FundingActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 

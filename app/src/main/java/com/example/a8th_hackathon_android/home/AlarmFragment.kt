@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.a8th_hackathon_android.R
-import com.example.a8th_hackathon_android.databinding.FragmentHomeBookBinding
+import com.example.a8th_hackathon_android.databinding.FragmentHomeAlarmBinding
+import com.example.a8th_hackathon_android.databinding.FragmentHomeBinding
 import com.example.a8th_hackathon_android.project.ProjectAdapter
 import com.example.a8th_hackathon_android.project.ProjectItem
 
-class BookFragment : Fragment() {
+class AlarmFragment : Fragment() {
 
-    private var _binding: FragmentHomeBookBinding? = null
+    private var _binding: FragmentHomeAlarmBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -20,7 +21,7 @@ class BookFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBookBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeAlarmBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -28,6 +29,7 @@ class BookFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         // 여기서 binding 으로 뷰 연결
         // 예: binding.textView.text = "전체 탭!"
+
         //이후 정보 박아서 구현
         val dummyList = listOf(
             ProjectItem(R.drawable.dummy_image, "함께손잡기 프로젝트", "창작자들이 만든 손끝의 응원 팔찌", 28239),
@@ -44,7 +46,6 @@ class BookFragment : Fragment() {
         binding.btnFilter.setOnClickListener {
             binding.btnFilter.isSelected = !binding.btnFilter.isSelected
         }
-
     }
 
     override fun onDestroyView() {

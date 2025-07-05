@@ -1,14 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- 상단 영역: 숫자 + 버튼 묶음 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/projectNumContainer"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="책 탭"
-        android:textSize="24sp"
-        android:layout_gravity="center" />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 왼쪽 숫자 정보 -->
+        <LinearLayout
+            android:id="@+id/projectNumInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <!-- 숫자 -->
+            <TextView
+                android:id="@+id/pointText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="153 "
+                android:textColor="@color/main"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:textSize="20sp" />
+
+            <!-- '개 프로젝트' -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="개 프로젝트"
+                android:textColor="@color/point3"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:textSize="20sp"
+                android:layout_marginStart="0dp"/>
+        </LinearLayout>
+
+        <!-- 오른쪽 버튼 -->
+        <Button
+            android:id="@+id/btn_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/btn_outline_selector"
+            android:gravity="center"
+            android:paddingStart="12dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="6dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:text="방금 전"
+            android:textColor="@color/btn_text_selector"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/projectNumInfo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@id/projectNumInfo"
+            app:layout_constraintTop_toTopOf="@id/projectNumInfo"
+            app:layout_constraintVertical_bias="0.526" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- RecyclerView 아래에 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toBottomOf="@id/projectNumContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
