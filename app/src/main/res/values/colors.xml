@@ -2,4 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="main">#2966CC</color>
+    <color name="point1">#2966CC</color>
+    <color name="point2">#2966CC</color>
+    <color name="point3">#555555</color>
+    <color name="point4">#555555</color>
+    <color name="main1">#000000</color>
+    <color name="main2">#000000</color>
+    <color name="main3">#FFFFFF</color>
+    <color name="type_point1">#EE0606</color>
+    <color name="type_point2">#2966CC</color>
+
 </resources>
