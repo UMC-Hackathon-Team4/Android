@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 카드뷰: 작품 정보 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:cardUseCompatPadding="false"
+            app:cardBackgroundColor="@android:color/transparent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="82dp"
+                android:background="@drawable/bg_card_border"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_check_blue" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="작품 정보"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- 카테고리 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카테고리"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="4dp"/>
+
+        <Spinner
+            android:id="@+id/spinner_category"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_card_border_rect"
+            android:layout_marginStart="25dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:entries="@array/category_options"/>
+
+        <!-- 목표가격 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="목표가격"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="작품 진행에 필요한 최소 금액을 입력해 주세요."
+            android:textColor="#999999"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="25dp"/>
+
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_card_border_rect"
+            android:gravity="center_vertical"
+            android:layout_marginStart="25dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <EditText
+                android:id="@+id/edit_goal_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint=""
+                android:background="@android:color/transparent"
+                android:inputType="number"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="원"
+                android:textSize="14sp"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <!-- 기간 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기간"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사람들이 '함께하기'를 할 수 있는 기간이에요.\n너무 짧거나 너무 길지 않게 설정해보세요."
+            android:textColor="#999999"
+            android:textSize="10sp"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- 시작일 -->
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시작일"
+                android:textSize="10sp"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:inputType="number"
+                android:background="@drawable/bg_card_border_rect"
+                android:gravity="center" />
+
+            <TextView
+                android:padding="10dp"
+                android:textSize="10sp"
+                android:textColor="#000000"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="년"/>
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:inputType="number"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_card_border_rect"
+                android:gravity="center" />
+            <TextView
+                android:padding="10dp"
+                android:textSize="10sp"
+                android:textColor="#000000"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="월"/>
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:inputType="number"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_card_border_rect"
+                android:gravity="center" />
+
+            <TextView
+                android:padding="10dp"
+                android:textSize="10sp"
+                android:textColor="#000000"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="일"/>
+        </LinearLayout>
+
+        <!-- 종료일 -->
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="종료일"
+                android:textSize="10sp"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:inputType="number"
+                android:background="@drawable/bg_card_border_rect"
+                android:gravity="center" />
+
+            <TextView
+                android:padding="10dp"
+                android:textSize="10sp"
+                android:textColor="#000000"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="년"/>
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:inputType="number"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_card_border_rect"
+                android:gravity="center" />
+            <TextView
+                android:padding="10dp"
+                android:textSize="10sp"
+                android:textColor="#000000"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="월"/>
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:inputType="number"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_card_border_rect"
+                android:gravity="center" />
+
+            <TextView
+                android:padding="10dp"
+                android:textSize="10sp"
+                android:textColor="#000000"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="일"/>
+        </LinearLayout>
+
+        <!-- 다음 버튼 -->
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="다음"
+            android:layout_marginTop="32dp"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#699DE5"
+            android:background="@drawable/bg_rounded_border" />
+    </LinearLayout>
+
+
+</ScrollView>

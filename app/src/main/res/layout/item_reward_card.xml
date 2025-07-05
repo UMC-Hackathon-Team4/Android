@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_border"
+    android:layout_marginTop="20dp"
+    android:padding="16dp">
+
+    <!-- 삭제 텍스트 -->
+    <TextView
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="삭제"
+        android:textColor="#FF7070"
+        android:textSize="10sp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true" />
+
+    <!-- 리워드 정보 텍스트들 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/btn_delete"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="리워드 가격"
+                android:textColor="#555555"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/reward_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10,000원"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="판매 개수"
+                android:textColor="#555555"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/reward_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50개"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="리워드 이름"
+                android:textColor="#555555"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/reward_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[응원 펀딩] 감사카드 + 작가 엽서 1종"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category_options">
+        <item>잡화</item>
+        <item>예술</item>
+        <item>출판</item>
+    </string-array>
+</resources>
