@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.a8th_hackathon_android.FundingActivity
+import com.example.a8th_hackathon_android.funding.FundingActivity
 import com.example.a8th_hackathon_android.databinding.FragmentHomeAllBinding
 
 class AllFragment : Fragment() {
