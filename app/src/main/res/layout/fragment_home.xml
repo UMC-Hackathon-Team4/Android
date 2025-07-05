@@ -47,198 +47,30 @@
             android:layout_marginStart="1dp"/>
     </LinearLayout>
 
-    <!-- 탭 메뉴 영역 -->
-    <LinearLayout
-        android:id="@+id/tabMenu"
+    <!-- RecyclerView for Tabs -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTabs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="36dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:clipToPadding="false"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintTop_toBottomOf="@id/coinInfo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
-        <!-- 1. 전체 탭 -->
-        <LinearLayout
-            android:id="@+id/tabAll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginHorizontal="8dp">
-
-            <FrameLayout
-                android:layout_width="65dp"
-                android:layout_height="65dp">
-
-                <!-- Circle Shape 배경 -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_circle" />
-
-                <!-- 아이콘 -->
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_all"
-                    android:layout_gravity="center"/>
-            </FrameLayout>
-
-            <!-- 텍스트 -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전체"
-                android:fontFamily="@font/pretendard_regular"
-                android:textColor="@color/main"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-        <!-- 2. 인기 탭 -->
-        <LinearLayout
-            android:id="@+id/tabPopular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginHorizontal="8dp">
-
-            <FrameLayout
-                android:layout_width="65dp"
-                android:layout_height="65dp">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_circle" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_favor"
-                    android:layout_gravity="center"/>
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="인기"
-                android:fontFamily="@font/pretendard_regular"
-                android:textColor="@color/main"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-        <!-- 3. 예술 탭 -->
-        <LinearLayout
-            android:id="@+id/tabArt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginHorizontal="8dp">
-
-            <FrameLayout
-                android:layout_width="65dp"
-                android:layout_height="65dp">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_circle" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_art"
-                    android:layout_gravity="center"/>
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="예술"
-                android:fontFamily="@font/pretendard_regular"
-                android:textColor="@color/main"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-        <!-- 4. 출판 탭 -->
-        <LinearLayout
-            android:id="@+id/tabBook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginHorizontal="8dp">
-
-            <FrameLayout
-                android:layout_width="65dp"
-                android:layout_height="65dp">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_circle" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_book"
-                    android:layout_gravity="center"/>
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="출판"
-                android:textColor="@color/main"
-                android:fontFamily="@font/pretendard_regular"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-        <!-- 5. 잡화 탭 -->
-        <LinearLayout
-            android:id="@+id/tabGoods"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginHorizontal="8dp">
-
-            <FrameLayout
-                android:layout_width="65dp"
-                android:layout_height="65dp">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_circle" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_cart"
-                    android:layout_gravity="center"/>
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="잡화"
-                android:textColor="@color/main"
-                android:textSize="14sp"
-                android:fontFamily="@font/pretendard_regular"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
+    <!-- ViewPager2 for Content -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/rvTabs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
 
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

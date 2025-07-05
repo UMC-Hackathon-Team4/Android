@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
+
 android {
     namespace = "com.example.a8th_hackathon_android"
     compileSdk = 35
@@ -32,10 +33,12 @@ android {
     }
     buildFeatures{
         viewBinding = true
+        dataBinding = true
     }
     kotlinOptions {
         jvmTarget = "11"
     }
+
 }
 
 dependencies {
@@ -43,7 +46,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation ("com.eightbitlab:blurview:1.6.6") //blur 효과를 주기 위한 코드
+    //implementation ("com.eightbitlab:blurview:1.6.6") //blur 효과를 주기 위한 코드
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
