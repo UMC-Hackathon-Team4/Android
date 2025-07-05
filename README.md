@@ -19,7 +19,7 @@
 
 |곽선호|채윤지|장용근|
 |:---:|:---:|:---:|
-|<img src="https://github.com/https://github.com/sxunxin.png"  width="300" height="230">|<img src="https://github.com/KateteDeveloper.png"  width="300" height="230">|<img src="https://github.com/james4510.png"  width="300" height="230">|
+|<img src="https://github.com/sxunxin.png"  width="300" height="230">|<img src="https://github.com/KateteDeveloper.png"  width="300" height="230">|<img src="https://github.com/james4510.png"  width="300" height="230">|
 |[@ugmin1030](https://github.com/sxunxin)|[@KateteDeveloper](https://github.com/KateteDeveloper)|[@Hongji03](https://github.com/james4510)|
 <br/>
 
