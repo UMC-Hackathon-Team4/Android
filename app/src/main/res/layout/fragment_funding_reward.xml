@@ -183,7 +183,7 @@
         <!-- 함께해요 버튼 -->
         <Button
             android:id="@+id/btn_next"
-            android:layout_width="match_parent"
+            android:layout_width="325dp"
             android:layout_height="48dp"
             android:layout_marginTop="32dp"
             android:text="함께해요"
