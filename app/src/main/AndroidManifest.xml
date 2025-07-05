@@ -32,7 +32,7 @@
         <activity android:name=".funding.FundingDetailActivity"
             android:exported="true">
         </activity>
-
+      
     </application>
 
 </manifest>

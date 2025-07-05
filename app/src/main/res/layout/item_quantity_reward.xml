@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_rounded_border_light"
+    android:padding="20dp"
+    android:layout_marginBottom="12dp"
+    android:gravity="center_vertical">
+
+    <!-- 좌측: 리워드 설명 + 수량 선택 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tvRewardDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[응원 펀딩] 감사카드 + 작가 엽서 1종"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <!-- 수량 조절 -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@drawable/bg_quantity_selector"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="30dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/btnMinus"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="-"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvQuantity"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="1"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/btnPlus"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="+"
+                android:textStyle="bold"
+
+                android:textSize="17sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 우측: 금액 -->
+    <TextView
+        android:id="@+id/tvRewardPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10,000원"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"
+        android:textSize="16sp" />
+</LinearLayout>

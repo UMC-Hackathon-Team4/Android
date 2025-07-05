@@ -3,13 +3,15 @@ package com.example.a8th_hackathon_android
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 
-class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHolder>() {
+class DetailPagerAdapter(private val rewards: List<DetailActivity.RewardData>) : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_viewpager_detail, parent, false)
@@ -28,16 +30,13 @@ class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHol
         private val layoutStory: View = itemView.findViewById(R.id.layoutStory)
         private val layoutReward: View = itemView.findViewById(R.id.layoutReward)
 
-        fun bind() {
-            // 초기 상태: 첫 번째 탭(소개) 표시
-            showTabContent(0)
-
-            // 탭 추가
+        init {
+            // 탭은 ViewHolder 생성 시 한 번만 초기화
+            tabLayout.removeAllTabs()
             tabLayout.addTab(tabLayout.newTab().setText("소개"))
             tabLayout.addTab(tabLayout.newTab().setText("스토리"))
             tabLayout.addTab(tabLayout.newTab().setText("리워드"))
 
-            // 탭 선택 리스너
             tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     showTabContent(tab.position)
@@ -47,13 +46,39 @@ class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHol
             })
         }
 
+        fun bind() {
+            showTabContent(0) // 탭 초기 표시
+
+            val rewardContainer = itemView.findViewById<LinearLayout>(R.id.layoutReward_item)
+            rewardContainer.visibility = View.VISIBLE
+            rewardContainer.removeAllViews()
+
+            val inflater = LayoutInflater.from(itemView.context)
+            for (reward in rewards) {
+                val rewardView = inflater.inflate(R.layout.item_reward, rewardContainer, false)
+                rewardView.findViewById<TextView>(R.id.tvRewardTitle).text = reward.title
+                rewardView.findViewById<TextView>(R.id.tvRewardDesc).text = reward.description
+
+                val tvLeftCount = rewardView.findViewById<TextView>(R.id.tvRewardLeftCount)
+                if (reward.leftCount > 0) {
+                    tvLeftCount.visibility = View.VISIBLE
+                    tvLeftCount.text = "${reward.leftCount}개 남음"
+                } else if (reward.leftCount != -1) {
+                    tvLeftCount.visibility = View.VISIBLE
+                    tvLeftCount.text = "품절"
+                } else {
+                    tvLeftCount.visibility = View.GONE // 후원하기 예외 처리
+                }
+
+                rewardContainer.addView(rewardView)
+            }
+        }
+
         private fun showTabContent(position: Int) {
-            // 모든 레이아웃 숨기기
             layoutIntro.visibility = View.GONE
             layoutStory.visibility = View.GONE
             layoutReward.visibility = View.GONE
 
-            // 선택된 탭에 맞게 표시
             when (position) {
                 0 -> layoutIntro.visibility = View.VISIBLE
                 1 -> layoutStory.visibility = View.VISIBLE
@@ -61,4 +86,5 @@ class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHol
             }
         }
     }
+
 }

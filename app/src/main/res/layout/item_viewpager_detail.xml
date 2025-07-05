@@ -91,12 +91,12 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp" />
 
-            <!-- 달성 금액 -->
+            <!-- 달성 퍼센트 -->
             <TextView
                 android:id="@+id/tv_amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="223,203,000원 달성"
+                android:text="198% 달성"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:gravity="end"
@@ -255,13 +255,28 @@
                 </LinearLayout>
             </LinearLayout>
 
+
             <!-- 탭 레이아웃 -->
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
-                app:tabTextColor="@color/black"
                 android:background="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:tabGravity="fill"
+                app:tabMode="fixed"
+                app:tabIndicatorColor="@color/black"
+                app:tabIndicatorHeight="1dp"
+                app:tabSelectedTextColor="@color/black"
+                app:tabTextColor="@color/black"
+                app:tabIndicatorFullWidth="true"
+                app:tabRippleColor="@android:color/transparent"
+                app:tabTextAppearance="@style/TabTextAppearance"/>
+
+            <!-- 구분선 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A0A0A0"/>
 
             <!-- 탭 내용 영역 -->
             <FrameLayout
@@ -275,42 +290,43 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="10dp">
 
+                    <!-- 제목 텍스트 -->
                     <TextView
+                        android:id="@+id/layoutIntro_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="감각 기반 창작자들의 컬러링북 북펀딩\n&lt;너의 감각이 좋아&gt;"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="16dp" />
+                        android:textColor="@color/black" />
 
+                    <!-- 내용 텍스트 -->
                     <TextView
+                        android:id="@+id/layoutIntro_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="&lt;너의 감각이 좋아&gt;는 감각 기반 창작자들의 개성과 감성을 담은 컬러링북입니다.\n색을 입히며 세상을 공감하고, 창작의 기쁨을 느껴보세요."
-                        android:textSize="14sp"
+                        android:text="&lt;너의 감각이 좋아&gt;는 감각 기반 창작자들의 개성과 감성을 담은 컬러링북입니다.\n색을 입히며 세상을 공감하고, 창작의 기쁨을 느껴보세요.\n\n• 시각 장애 작가가 만든 촉감적 형태 드로잉\n• 청각장애 작가의 조용한 자연 풍경 스케치\n• 심리적 감각 표현을 시도한 감정 선화\n\n이 책은 단순한 컬러링북을 넘어, 다양한 감각과 표현 방식을 존중하는 새로운 예술 경험을 제안합니다."
+                        android:textSize="12sp"
                         android:textColor="@color/black"
                         android:layout_marginTop="8dp" />
 
-                    <!-- 소개 리스트 -->
-                    <TextView
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="• 시각 장애 작가가 만든 촉감적 형태 드로잉\n• 청각장애 작가의 조용한 자연 풍경 스케치\n• 심리적 감각 표현을 시도한 감정 선화"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="8dp" />
+                        android:layout_height="1dp"
+                        android:background="#A0A0A0"
+                        android:layout_marginTop="30dp" />
 
-                    <TextView
+                    <ImageView
+                        android:id="@+id/layoutIntro_image"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="이 책은 단순한 컬러링북을 넘어, 다양한 감각과 표현 방식을 존중하는 새로운 예술 경험을 제안합니다."
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="8dp" />
+                        android:scaleType="centerCrop"
+                        android:layout_marginTop="20dp"
+                        android:background="@android:color/darker_gray" />
                 </LinearLayout>
+
 
                 <!-- 스토리 탭 -->
                 <LinearLayout
@@ -319,15 +335,36 @@
                     android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="10dp">
 
                     <TextView
+                        android:id="@+id/layoutStory_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="스토리 탭 내용입니다."
-                        android:textSize="14sp"
+                        android:text="제작 스토리"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:id="@+id/layoutStory_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_rounded_border_light"
+                        android:padding="10dp"
+                        android:text="“네가 보는 세상은 어떤 색이야?”\n\n누군가의 눈, 누군가의 손, 누군가의 마음으로 완성되는 그림책\n&lt;너의 감각이 좋아&gt;는 서로 다른 감각을 가진 창작자들이 모여 만든 함께 그리는 책\n\n작가들은 시끄러운 세상을 조용하게 바라보거나, 보이지 않는 것들을 촉감으로 상상하며, 형태보다 감정을 먼저 그립니다.\n이 책은 그들이 느낀 세계의 ‘선’을, 여러분의 색으로 완성할 수 있도록 돕습니다.\n\n장애와 비장애, 경계없는 창작과 치유의 공간\n이 작은 책 한 권이, 감각을 이해하고 연결하는 다리가 되길 바랍니다."
+                        android:textSize="12sp"
                         android:textColor="@color/black" />
+
+                    <!-- 구분선 -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#A0A0A0"
+                        android:layout_marginVertical="20dp" />
                 </LinearLayout>
+
 
                 <!-- 리워드 탭 -->
                 <LinearLayout
@@ -336,23 +373,36 @@
                     android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="리워드 탭 내용입니다."
-                        android:textSize="14sp"
-                        android:textColor="@color/black" />
+                        android:text="리워드 선택"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="10dp" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutReward_item"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <!-- 구분선 -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#A0A0A0"
+                        android:layout_marginVertical="20dp" />
+
                 </LinearLayout>
+
             </FrameLayout>
 
-            <!-- 구분선 -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#A0A0A0"
-                android:layout_marginTop="20dp" />
+
 
         </LinearLayout>
     </LinearLayout>
