@@ -48,6 +48,8 @@ class GoodsFragment : Fragment() {
         // ViewModel에서 GOODS 카테고리만 호출!
         viewModel.categoryProjects.observe(viewLifecycleOwner) { list ->
             adapter.submitList(list)
+
+            binding.pointText.text = list.size.toString()
         }
         viewModel.getProjectsByCategory("GOODS") // "GOODS"만 불러오기!
 

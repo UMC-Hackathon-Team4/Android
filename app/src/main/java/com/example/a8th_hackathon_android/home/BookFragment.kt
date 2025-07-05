@@ -62,6 +62,8 @@ class BookFragment : Fragment() {
         // ViewModel 연동
         viewModel.categoryProjects.observe(viewLifecycleOwner) { list ->
             adapter.submitList(list)  // 이제 타입 mismatch 없음!
+
+            binding.pointText.text = list.size.toString()
         }
         viewModel.getProjectsByCategory("PUBLISHING")
 

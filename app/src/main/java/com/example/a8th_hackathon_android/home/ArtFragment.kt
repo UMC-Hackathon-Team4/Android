@@ -51,6 +51,8 @@ class ArtFragment : Fragment() {
         //adapter.submitList(dummyList)
         viewModel.categoryProjects.observe(viewLifecycleOwner) { list ->
             adapter.submitList(list)
+
+            binding.pointText.text = list.size.toString()
         }
 
         //Art 카테고리 호출

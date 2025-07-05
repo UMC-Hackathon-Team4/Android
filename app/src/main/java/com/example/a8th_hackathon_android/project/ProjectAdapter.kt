@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.a8th_hackathon_android.R
 import com.example.a8th_hackathon_android.databinding.ItemProjectBinding
 
 import com.example.a8th_hackathon_android.model.DeadlineProjectItem
@@ -24,8 +25,15 @@ class ProjectAdapter :
 
 
         fun bind(item: DeadlineProjectItem) {
-            Glide.with(binding.ivThumbnail)
-                .load(item.imageUrl)
+            //  카테고리별 기본 이미지 리소스
+            val defaultImageRes = when (item.category.uppercase()) {
+                "ART" -> R.drawable.dummy_art
+                "PUBLISHING" -> R.drawable.dummy_book
+                "GOODS" -> R.drawable.dummy_goods
+                else -> R.drawable.dummy_art // 기본값
+            }
+            Glide.with(binding.ivThumbnail.context)  // context 안전
+                .load(defaultImageRes)
                 .into(binding.ivThumbnail)
 
             binding.tvTitle.text = item.projectTitle

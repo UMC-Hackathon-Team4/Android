@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.a8th_hackathon_android.R
 import com.example.a8th_hackathon_android.databinding.ItemProjectBinding
 import com.example.a8th_hackathon_android.home.CategoryProjectItem
 
@@ -15,10 +16,32 @@ class CategoryProjectAdapter :
     inner class ProjectViewHolder(private val binding: ItemProjectBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: CategoryProjectItem) {
-            Glide.with(binding.ivThumbnail)
-                .load(item.imageUrl)
+//        fun bind(item: CategoryProjectItem) {
+//            Glide.with(binding.ivThumbnail)
+//                .load(item.imageUrl)
+//                .into(binding.ivThumbnail)
+    fun bind(item: CategoryProjectItem) {
+        val defaultImageRes = when (item.category.trim().uppercase()) {
+            "ART" -> R.drawable.dummy_art
+            "PUBLISHING" -> R.drawable.dummy_book
+            "GOODS" -> R.drawable.dummy_goods
+            else -> R.drawable.dummy_art
+        }
+
+        val imageUrl = item.imageUrl
+
+        if (imageUrl.isNullOrEmpty()) {
+            // 서버 이미지가 없으면 기본 이미지
+            Glide.with(binding.ivThumbnail.context)
+                .load(defaultImageRes)
                 .into(binding.ivThumbnail)
+        } else {
+            // 서버 이미지 있으면 그것도 시도, 실패하면 기본 이미지
+            Glide.with(binding.ivThumbnail.context)
+                .load(imageUrl)
+                .error(defaultImageRes)
+                .into(binding.ivThumbnail)
+        }
 
             binding.tvTitle.text = item.projectTitle
             binding.tvDesc.text = item.category
