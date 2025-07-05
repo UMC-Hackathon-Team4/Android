@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 카드: 리워드 만들기 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:cardUseCompatPadding="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="82dp"
+                android:background="@drawable/bg_card_border"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_check_blue" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="리워드 만들기"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- 리워드 이름 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="리워드 이름"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:hint="ex) [응원 펀딩] 감사카드 + 엽서 1종"
+            android:background="@drawable/bg_card_border_rect"
+            android:layout_marginStart="25dp"
+            android:padding="12dp"
+            android:textSize="10sp" />
+
+        <!-- 판매 개수 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="판매 개수"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이 작품을 몇 개 준비하셨나요?\n함께하실 분들을 위해 수량을 정해주세요."
+            android:textColor="#999999"
+            android:textSize="10sp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="4dp" />
+
+        <RelativeLayout
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="25dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_card_border_rect"
+                android:inputType="number"
+                android:padding="12dp"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="개"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="12dp"
+                android:textSize="10sp"
+                android:textColor="#000000" />
+        </RelativeLayout>
+
+        <!-- 가격 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가격"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="4dp"/>
+
+        <RelativeLayout
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="25dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_card_border_rect"
+                android:inputType="number"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="원"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="12dp"
+                android:textSize="10sp"
+                android:textColor="#000000" />
+        </RelativeLayout>
+
+        <!-- 저장 버튼 -->
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:text="저장"
+            android:textColor="@android:color/black"
+            android:backgroundTint="#E5EDFF"
+            android:layout_marginStart="25dp"
+            android:textSize="10sp"
+            android:background="@drawable/bg_rounded_border" />
+
+        <!-- 함께해요 버튼 -->
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:text="함께해요"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#699DE5"
+            android:background="@drawable/bg_rounded_border" />
+    </LinearLayout>
+</ScrollView>

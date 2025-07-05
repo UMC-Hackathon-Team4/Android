@@ -12,5 +12,6 @@
     <color name="main3">#FFFFFF</color>
     <color name="type_point1">#EE0606</color>
     <color name="type_point2">#2966CC</color>
-
+    <color name="card_background">#F8F8F8</color>
+    <color name="card_border">#CCE1FF</color>
 </resources>

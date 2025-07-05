@@ -12,8 +12,6 @@ import com.example.a8th_hackathon_android.R
 import com.example.a8th_hackathon_android.databinding.FragmentHomeBinding
 import com.example.a8th_hackathon_android.model.TabItem
 import com.example.a8th_hackathon_android.ui.TabAdapter
-import android.content.Intent
-import com.example.a8th_hackathon_android.FundingActivity
 
 class FragmentHome : Fragment() {
 
