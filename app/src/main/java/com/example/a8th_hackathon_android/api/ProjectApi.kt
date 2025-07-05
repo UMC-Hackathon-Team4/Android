@@ -20,10 +20,10 @@ interface ProjectApi {
     ): Response<ProjectRegisterResponse>
     @GET("/projects/best")
     suspend fun getBestProjects(): Response<ProjectBestResponse>
-    @GET("/api/projects/{projectId}")
+    @GET("/projects/{projectId}")
     suspend fun getProjectDetail(
         @Path("projectId") projectId: Long,
-        @Query("view") view: String
+        @Query("type") view: String
     ): Response<ProjectDetailResponse>
 
     @GET("/projects/deadline")

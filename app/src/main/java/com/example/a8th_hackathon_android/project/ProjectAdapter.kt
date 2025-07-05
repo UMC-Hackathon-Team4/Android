@@ -2,6 +2,7 @@ package com.example.a8th_hackathon_android.project
 
 
 
+import android.content.Context
 import android.content.Intent
 
 import android.view.LayoutInflater
@@ -12,17 +13,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.a8th_hackathon_android.R
 import com.example.a8th_hackathon_android.databinding.ItemProjectBinding
+import com.example.a8th_hackathon_android.detail.DetailActivity
 
 import com.example.a8th_hackathon_android.model.DeadlineProjectItem
 
 
 
-class ProjectAdapter :
+class ProjectAdapter (private val activityContext: Context) :
     ListAdapter<DeadlineProjectItem, ProjectAdapter.ProjectViewHolder>(DiffCallback()) {
 
     inner class ProjectViewHolder(private val binding: ItemProjectBinding)
         : RecyclerView.ViewHolder(binding.root) {
-
 
         fun bind(item: DeadlineProjectItem) {
             //  카테고리별 기본 이미지 리소스
@@ -40,22 +41,13 @@ class ProjectAdapter :
             binding.tvDesc.text = item.category  // 필요시 description으로 매핑
             binding.pointText.text = item.currentAmount.toString()
 
-//        fun bind(item: ProjectItem) {
-//            binding.ivThumbnail.setImageResource(item.thumbnail)
-//            binding.tvTitle.text = item.title
-//            binding.tvDesc.text = item.description
-//            binding.pointText.text = item.participants.toString()
-//            // 하트 등 다른 UI 처리 필요시 여기에!
-//
-//            binding.root.setOnClickListener {
-//                val context = it.context
-//                val intent = Intent(context, DetailActivity::class.java).apply {
-//                    // putExtra("projectId", item.projectId)
-//                    putExtra("projectId", 1L)
-//                }
-//                context.startActivity(intent)
-//            }
-//>>>>>>> 70c0a19a3ee7d8b77be58c365aa1b6d7c7e02bee
+            binding.root.setOnClickListener {
+                val context = it.context
+                val intent = Intent(context, DetailActivity::class.java).apply {
+                    putExtra("projectId", item.projectId)
+                }
+                context.startActivity(intent)
+            }
         }
     }
 
