@@ -10,6 +10,7 @@ import com.example.a8th_hackathon_android.model.DeadlineProjectItem
 import com.example.a8th_hackathon_android.model.ProjectBestItem
 import kotlinx.coroutines.launch
 
+
 class ProjectViewModel : ViewModel() {
 
     // 마감임박 프로젝트 리스트 LiveData

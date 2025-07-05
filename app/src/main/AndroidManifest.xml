@@ -33,6 +33,10 @@
         <activity android:name=".funding.FundingDetailActivity"
             android:exported="true">
         </activity>
+
+        <activity
+            android:name=".detail.DetailActivity"
+            android:exported="true" />
       
     </application>
 
