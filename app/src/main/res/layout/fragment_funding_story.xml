@@ -73,15 +73,6 @@
             android:textSize="10sp"
             android:layout_marginStart="25dp" />
 
-        <TextView
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:text="0/50"
-            android:gravity="end"
-            android:textSize="12sp"
-            android:textColor="#999999"
-            android:layout_marginTop="4dp"
-            android:layout_marginStart="25dp" />
 
         <!-- 대표 이미지 -->
         <TextView
@@ -103,6 +94,18 @@
             android:textSize="10sp"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="25dp" />
+
+        <!-- 1. 대표 이미지 업로드 버튼 -->
+        <ImageView
+            android:id="@+id/iv_cover_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="25dp"
+            android:background="@drawable/bg_card_border_rect"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_camera" />
+
 
 
 
@@ -126,6 +129,41 @@
             android:layout_marginStart="25dp"
             android:textSize="10sp"/>
 
+        <!-- 2. 작품 소개 섹션의 이미지 업로드 3개 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="27dp">
+
+            <ImageView
+                android:id="@+id/iv_intro_image1"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_card_border_rect"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_camera" />
+
+            <ImageView
+                android:id="@+id/iv_intro_image2"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_card_border_rect"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_camera" />
+
+            <ImageView
+                android:id="@+id/iv_intro_image3"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:background="@drawable/bg_card_border_rect"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_camera" />
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="280dp"
             android:layout_height="120dp"
@@ -144,24 +182,9 @@
                 android:maxLength="100"
                 android:textSize="10sp"/>
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="8dp"
-                android:src="@drawable/ic_camera"/>
+
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:text="0/100"
-            android:gravity="end"
-            android:textSize="12sp"
-            android:textColor="#999999"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="4dp"/>
 
         <!-- 작품 이야기 -->
         <TextView
@@ -196,15 +219,6 @@
             android:layout_marginTop="10dp"
             android:textSize="10sp"/>
 
-        <TextView
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:text="0/100"
-            android:gravity="end"
-            android:textSize="12sp"
-            android:textColor="#999999"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="4dp"/>
 
         <!-- 작품 요약 -->
         <TextView
@@ -239,15 +253,7 @@
             android:layout_marginStart="25dp"
             android:textSize="10sp"/>
 
-        <TextView
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:text="0/50"
-            android:gravity="end"
-            android:textSize="12sp"
-            android:textColor="#999999"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="4dp"/>
+
 
         <!-- 다음 버튼 -->
         <Button

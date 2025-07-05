@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,6 +6,7 @@
     android:background="#FFFFFF">
 
     <LinearLayout
+        android:id="@+id/reward_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -50,6 +50,17 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- ✅ 동적으로 카드가 추가될 위치 -->
+        <LinearLayout
+            android:id="@+id/reward_card_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp" />
+
+        <!-- 이하 입력 필드, 버튼 등 기존 내용 동일 -->
         <!-- 리워드 이름 -->
         <TextView
             android:layout_width="wrap_content"
@@ -63,6 +74,7 @@
             android:layout_marginBottom="4dp"/>
 
         <EditText
+            android:id="@+id/reward_name"
             android:layout_width="280dp"
             android:layout_height="40dp"
             android:hint="ex) [응원 펀딩] 감사카드 + 엽서 1종"
@@ -99,6 +111,7 @@
             android:layout_marginStart="25dp">
 
             <EditText
+                android:id="@+id/reward_number"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_card_border_rect"
@@ -136,6 +149,7 @@
             android:layout_marginStart="25dp">
 
             <EditText
+                android:id="@+id/reward_price"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_card_border_rect"
@@ -176,5 +190,6 @@
             android:textColor="@android:color/white"
             android:backgroundTint="#699DE5"
             android:background="@drawable/bg_rounded_border" />
+
     </LinearLayout>
 </ScrollView>

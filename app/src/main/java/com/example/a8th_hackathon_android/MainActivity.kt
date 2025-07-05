@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.a8th_hackathon_android.databinding.ActivityMainBinding
 import com.example.a8th_hackathon_android.FragmentSplash // 필요하면 Home 대신 Splash로 시작
+import com.example.a8th_hackathon_android.home.FragmentHome
+
 // import com.example.a8th_hackathon_android.home.FragmentHome
 
 class MainActivity : AppCompatActivity() {
@@ -12,13 +14,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
+            val startFromSplash = intent.getBooleanExtra("start_splash", true)
+            val startFragment = if (startFromSplash) {
+                FragmentSplash() // 앱 처음 실행 시
+            } else {
+                FragmentHome() // 메인화면으로 바로 이동
+            }
+
             supportFragmentManager.beginTransaction()
-                .replace(binding.fragmentContainerView.id, FragmentSplash())
+                .replace(binding.fragmentContainerView.id, startFragment)
                 .commit()
         }
     }

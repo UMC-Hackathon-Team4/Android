@@ -13,12 +13,6 @@ data class ProjectRegisterRequest(
     val rewards: List<RewardDto>
 )
 
-data class RewardDto(
-    val title: String,
-    val price: Long,
-    val stock: Long
-)
-
 data class ProjectRegisterResponse(
     val isSuccess: Boolean,
     val code: String,

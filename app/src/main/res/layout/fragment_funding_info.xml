@@ -161,6 +161,7 @@
                 android:layout_marginEnd="8dp" />
 
             <EditText
+                android:id="@+id/start_year_tv"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:textSize="10sp"
@@ -177,6 +178,7 @@
                 android:text="년"/>
 
             <EditText
+                android:id="@+id/start_month_tv"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:textSize="10sp"
@@ -193,6 +195,7 @@
                 android:text="월"/>
 
             <EditText
+                android:id="@+id/start_day_tv"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:textSize="10sp"
@@ -228,6 +231,7 @@
                 android:layout_marginEnd="8dp" />
 
             <EditText
+                android:id="@+id/end_year_tv"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:textSize="10sp"
@@ -244,6 +248,7 @@
                 android:text="년"/>
 
             <EditText
+                android:id="@+id/end_month_tv"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:textSize="10sp"
@@ -260,6 +265,7 @@
                 android:text="월"/>
 
             <EditText
+                android:id="@+id/end_day_tv"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:textSize="10sp"
@@ -291,3 +297,4 @@
 
 
 </ScrollView>
+

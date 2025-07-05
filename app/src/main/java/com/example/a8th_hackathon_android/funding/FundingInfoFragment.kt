@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.a8th_hackathon_android.R
 import com.example.a8th_hackathon_android.databinding.FragmentFundingInfoBinding
+import androidx.lifecycle.ViewModel
+
 
 class FundingInfoFragment : Fragment() {
     private lateinit var binding: FragmentFundingInfoBinding
@@ -40,7 +42,8 @@ class FundingInfoFragment : Fragment() {
 
         // "다음" 버튼 클릭 시 FundingStoryFragment로 이동
         binding.btnNext.setOnClickListener {
-            // 필요한 경우 selectedCategory 값 전달 가능
+
+
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, FundingStoryFragment())
                 .addToBackStack(null)
