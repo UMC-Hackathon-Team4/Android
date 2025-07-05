@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_selected="true">
-        <shape android:shape="oval">
-            <solid android:color="#2966CC" /> <!-- 선택된 원 색상 -->
-        </shape>
-    </item>
-    <item>
-        <shape android:shape="oval">
-            <solid android:color="#D8E4FF" /> <!-- 기본 원 색상 -->
-        </shape>
-    </item>
+    <!-- 선택 상태 -->
+    <item android:state_selected="true"
+        android:drawable="@drawable/bg_circle_border" />
+    <!-- 기본 상태 -->
+    <item android:drawable="@android:color/transparent" />
 </selector>
