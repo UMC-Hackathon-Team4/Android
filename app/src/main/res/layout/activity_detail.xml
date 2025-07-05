@@ -27,10 +27,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toTopOf="@id/btn_join"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintVertical_bias="0.0" />
 
     <!-- 하단 고정 버튼 -->
     <Button
@@ -39,6 +41,7 @@
         android:layout_height="60dp"
         android:layout_margin="16dp"
         android:text="함께해요"
+        android:translationY="-3dp"
         android:textColor="@android:color/white"
         android:backgroundTint="#699DE5"
         app:cornerRadius="10dp"

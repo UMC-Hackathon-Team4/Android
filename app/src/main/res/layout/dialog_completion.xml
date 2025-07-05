@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dialog_rounded"
+    android:padding="34dp"
+    android:gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvCompletionMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="작성이 완료되었습니다!\n함께해주셔서 감사합니다. 😀"
+        android:textAlignment="center"
+        android:textColor="#699DE5"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:lineSpacingExtra="4dp"/>
+</LinearLayout>

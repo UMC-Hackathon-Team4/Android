@@ -3,6 +3,8 @@ package com.example.a8th_hackathon_android
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -29,10 +31,9 @@ class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHol
         private val layoutReward: View = itemView.findViewById(R.id.layoutReward)
 
         fun bind() {
-            // 초기 상태: 첫 번째 탭(소개) 표시
             showTabContent(0)
 
-            // 탭 추가
+            // 탭 설정
             tabLayout.addTab(tabLayout.newTab().setText("소개"))
             tabLayout.addTab(tabLayout.newTab().setText("스토리"))
             tabLayout.addTab(tabLayout.newTab().setText("리워드"))
@@ -45,7 +46,38 @@ class DetailPagerAdapter : RecyclerView.Adapter<DetailPagerAdapter.DetailViewHol
                 override fun onTabUnselected(tab: TabLayout.Tab) {}
                 override fun onTabReselected(tab: TabLayout.Tab) {}
             })
+
+            // 리워드 데이터 추가
+            val rewardContainer = itemView.findViewById<LinearLayout>(R.id.layoutReward_item)
+            rewardContainer.visibility = View.VISIBLE
+            rewardContainer.removeAllViews()
+
+            val rewards = listOf(
+                RewardData("1,000원", "후원만 하기", ""),
+                RewardData("10,000원", "[응원 펀딩] 감사카드+ 작가 엽서 1종", "36개 남음"),
+                RewardData("20,000원", "[기본 리워드] 제작 주머니 1개 + 감사카드", "12개 남음"),
+                RewardData("30,000원", "[응원 리워드] 주머니 1개 + 엽서 세트 (3종) + 감사카드", "5개 남음"),
+                RewardData("50,000원", "[스페셜 리워드] 주머니 2개(색상 랜덤) + 손글씨 메시지 카드 + 엽서 세트 + 제작 과정 미니 영상 링크", "2개 남음")
+            )
+
+            val inflater = LayoutInflater.from(itemView.context)
+            for (reward in rewards) {
+                val rewardView = inflater.inflate(R.layout.item_reward, rewardContainer, false)
+                rewardView.findViewById<TextView>(R.id.tvRewardTitle).text = reward.title
+                rewardView.findViewById<TextView>(R.id.tvRewardDesc).text = reward.description
+
+                val tvLeftCount = rewardView.findViewById<TextView>(R.id.tvRewardLeftCount)
+                if (reward.leftCount.isNotEmpty()) {
+                    tvLeftCount.visibility = View.VISIBLE
+                    tvLeftCount.text = reward.leftCount
+                } else {
+                    tvLeftCount.visibility = View.GONE
+                }
+
+                rewardContainer.addView(rewardView)
+            }
         }
+
 
         private fun showTabContent(position: Int) {
             // 모든 레이아웃 숨기기
