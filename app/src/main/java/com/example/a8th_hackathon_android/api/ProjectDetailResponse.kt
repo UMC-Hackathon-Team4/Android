@@ -21,3 +21,40 @@ data class ProjectDetail(
     val supportersCount: Long,
     val percentage: String
 )
+
+data class IntroResponse(
+    val isSuccess: Boolean,
+    val result: IntroResult
+)
+
+data class IntroResult(
+    val projectId: Long,
+    val description: String
+)
+
+data class StoryResponse(
+    val isSuccess: Boolean,
+    val result: StoryResult
+)
+
+data class StoryResult(
+    val projectId: Long,
+    val story: String
+)
+
+data class RewardResponse(
+    val isSuccess: Boolean,
+    val result: RewardResult
+)
+
+data class RewardResult(
+    val projectId: Long,
+    val rewards: List<RewardItem>
+)
+
+data class RewardItem(
+    val fundId: Long,
+    val title: String,
+    val description: String,
+    val price: Int
+)

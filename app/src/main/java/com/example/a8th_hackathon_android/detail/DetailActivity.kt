@@ -56,6 +56,8 @@ class DetailActivity : AppCompatActivity() {
         binding.btnJoin.setOnClickListener { showRewardBottomSheet() }
     }
 
+
+
     private fun loadProjectDetail(projectId: Long) {
         lifecycleScope.launch {
             try {

@@ -20,10 +20,10 @@ interface ProjectApi {
     ): Response<ProjectRegisterResponse>
     @GET("/projects/best")
     suspend fun getBestProjects(): Response<ProjectBestResponse>
-    @GET("/api/projects/{projectId}")
+    @GET("/projects/{projectId}")
     suspend fun getProjectDetail(
         @Path("projectId") projectId: Long,
-        @Query("view") view: String
+        @Query("type") view: String
     ): Response<ProjectDetailResponse>
 
     @GET("/projects/deadline")
@@ -33,5 +33,21 @@ interface ProjectApi {
     suspend fun getProjectsByCategory(
         @Query("category") category: String
     ): Response<CategoryProjectResponse>
+
+    @GET("/projects/{projectId}/intro")
+    suspend fun getProjectIntro(
+        @Path("projectId") projectId: Long
+    ): Response<IntroResponse>
+
+    @GET("/projects/{projectId}/story")
+    suspend fun getProjectStory(
+        @Path("projectId") projectId: Long
+    ): Response<StoryResponse>
+
+    @GET("/projects/{projectId}/rewards")
+    suspend fun getProjectRewards(
+        @Path("projectId") projectId: Long
+    ): Response<RewardResponse>
+
 }
 

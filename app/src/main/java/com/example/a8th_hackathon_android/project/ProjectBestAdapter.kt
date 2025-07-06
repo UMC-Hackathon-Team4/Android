@@ -11,8 +11,9 @@ import com.example.a8th_hackathon_android.R
 import com.example.a8th_hackathon_android.databinding.ItemProjectBinding
 import com.example.a8th_hackathon_android.model.ProjectBestItem
 
-class ProjectBestAdapter :
-    ListAdapter<ProjectBestItem, ProjectBestAdapter.ProjectViewHolder>(DiffCallback()) {
+class ProjectBestAdapter(
+    private val onItemClick: (Long) -> Unit
+) : ListAdapter<ProjectBestItem, ProjectBestAdapter.ProjectViewHolder>(DiffCallback()) {
 
     inner class ProjectViewHolder(private val binding: ItemProjectBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -28,12 +29,10 @@ class ProjectBestAdapter :
             val imageUrl = item.imageUrl
 
             if (imageUrl.isNullOrEmpty()) {
-                // 서버 이미지가 없으면 기본 이미지
                 Glide.with(binding.ivThumbnail.context)
                     .load(defaultImageRes)
                     .into(binding.ivThumbnail)
             } else {
-                // 서버 이미지 있으면 그것도 시도, 실패하면 기본 이미지
                 Glide.with(binding.ivThumbnail.context)
                     .load(imageUrl)
                     .error(defaultImageRes)
@@ -43,6 +42,11 @@ class ProjectBestAdapter :
             binding.tvTitle.text = item.projectTitle
             binding.tvDesc.text = item.category
             binding.pointText.text = item.supportersCount.toString()
+
+            // 클릭 이벤트 추가
+            binding.root.setOnClickListener {
+                onItemClick(item.projectId)
+            }
         }
     }
 

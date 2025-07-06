@@ -1,7 +1,5 @@
 package com.example.a8th_hackathon_android.project
 
-
-
 import android.content.Context
 import android.content.Intent
 
@@ -16,8 +14,6 @@ import com.example.a8th_hackathon_android.databinding.ItemProjectBinding
 import com.example.a8th_hackathon_android.detail.DetailActivity
 
 import com.example.a8th_hackathon_android.model.DeadlineProjectItem
-
-
 
 class ProjectAdapter (private val activityContext: Context) :
     ListAdapter<DeadlineProjectItem, ProjectAdapter.ProjectViewHolder>(DiffCallback()) {

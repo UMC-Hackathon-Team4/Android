@@ -14,6 +14,7 @@ import com.example.a8th_hackathon_android.home.ProjectViewModel
 import com.example.a8th_hackathon_android.R
 import com.example.a8th_hackathon_android.funding.FundingActivity
 import com.example.a8th_hackathon_android.databinding.FragmentHomeAllBinding
+import com.example.a8th_hackathon_android.detail.DetailActivity
 import com.example.a8th_hackathon_android.project.ProjectAdapter
 import com.example.a8th_hackathon_android.project.ProjectBestAdapter  // 꼭 바꿔야 함!
 
@@ -37,16 +38,24 @@ class AllFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = ProjectBestAdapter()
+        // 클릭 시 DetailActivity로 이동하도록 어댑터 생성
+        adapter = ProjectBestAdapter { projectId ->
+            val intent = Intent(requireContext(), DetailActivity::class.java).apply {
+                putExtra("projectId", projectId)
+            }
+            startActivity(intent)
+        }
+
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.bestProjects.observe(viewLifecycleOwner) { list ->
-            adapter.submitList(list) // 타입 딱 맞음!
+            adapter.submitList(list)
         }
 
         viewModel.getBestProjects()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

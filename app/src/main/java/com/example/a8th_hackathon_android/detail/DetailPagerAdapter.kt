@@ -1,9 +1,11 @@
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.a8th_hackathon_android.R
 import com.example.a8th_hackathon_android.api.ProjectDetail
 import com.example.a8th_hackathon_android.detail.DetailActivity
@@ -59,12 +61,48 @@ class DetailPagerAdapter(
         }
 
         private fun bindProjectDetail() {
-            itemView.findViewById<TextView>(R.id.tv_title).text = detail.projectTitle
-            itemView.findViewById<TextView>(R.id.tv_description).text = detail.summary
-            itemView.findViewById<TextView>(R.id.tv_participants).text = "${detail.supportersCount}명이 함께해요"
-            itemView.findViewById<TextView>(R.id.tv_amount).text = "${detail.percentage} 달성"
+            // 대표 이미지 (imageMain)
+            val imageMain = itemView.findViewById<ImageView>(R.id.imageMain)
+            Glide.with(itemView.context)
+                .load(detail.imageUrl) // 서버에서 준 sample.png 등
+                .placeholder(R.drawable.dummy_art) // 대체 이미지
+                .into(imageMain)
+
+            // 카테고리 (tv_category)
             itemView.findViewById<TextView>(R.id.tv_category).text = detail.category
+
+            // 제목 (tv_title)
+            itemView.findViewById<TextView>(R.id.tv_title).text = detail.projectTitle
+
+            // 설명 (tv_description)
+            itemView.findViewById<TextView>(R.id.tv_description).text = detail.summary
+
+            // 참여 수 (tv_participants)
+            itemView.findViewById<TextView>(R.id.tv_participants).text = "${detail.supportersCount}명이 함께해요"
+
+            // 달성 퍼센트 (tv_amount)
+            itemView.findViewById<TextView>(R.id.tv_amount).text = "${detail.percentage} 달성"
+
+            // 팀 이름 (tv_team_name)
+            itemView.findViewById<TextView>(R.id.tv_team_name).text = detail.creatorNickname
+
+            // 팀 소개 (tv_team_intro)
+            itemView.findViewById<TextView>(R.id.tv_team_intro).text = detail.creatorDetail
+
+            // 소개 탭 제목 (layoutIntro_title)
+            itemView.findViewById<TextView>(R.id.layoutIntro_title).text = detail.projectTitle
+
+            // 소개 탭 내용 (layoutIntro_content)
+            itemView.findViewById<TextView>(R.id.layoutIntro_content).text = detail.summary
+
+            // 소개 탭 이미지 (layoutIntro_image)
+            val introImage = itemView.findViewById<ImageView>(R.id.layoutIntro_image)
+            Glide.with(itemView.context)
+                .load(detail.imageUrl)
+                .placeholder(R.drawable.dummy_art)
+                .into(introImage)
         }
+
 
         private fun bindRewards() {
             val rewardContainer = itemView.findViewById<LinearLayout>(R.id.layoutReward_item)
