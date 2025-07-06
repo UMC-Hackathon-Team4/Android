@@ -1,9 +1,11 @@
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.a8th_hackathon_android.R
 import com.example.a8th_hackathon_android.api.ProjectDetail
 import com.example.a8th_hackathon_android.detail.DetailActivity
@@ -59,6 +61,19 @@ class DetailPagerAdapter(
         }
 
         private fun bindProjectDetail() {
+            // 카테고리별 기본 이미지 리소스
+            val defaultImageRes = when (detail.category.uppercase()) {
+                "ART" -> R.drawable.dummy_art
+                "PUBLISHING" -> R.drawable.dummy_book
+                "GOODS" -> R.drawable.dummy_goods
+                else -> R.drawable.dummy_art // 기본값
+            }
+
+            // 대표 이미지에 적용
+            val imageMain = itemView.findViewById<ImageView>(R.id.imageMain)
+            imageMain.setImageResource(defaultImageRes)
+
+            // 텍스트 뷰들 적용
             itemView.findViewById<TextView>(R.id.tv_title).text = detail.projectTitle
             itemView.findViewById<TextView>(R.id.tv_description).text = detail.summary
             itemView.findViewById<TextView>(R.id.tv_participants).text = "${detail.supportersCount}명이 함께해요"
