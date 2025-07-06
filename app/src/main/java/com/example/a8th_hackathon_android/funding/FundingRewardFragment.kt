@@ -8,14 +8,22 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.a8th_hackathon_android.R
+import com.example.a8th_hackathon_android.api.RetrofitClient
+import com.example.a8th_hackathon_android.api.RetrofitClient.projectApi
 import com.example.a8th_hackathon_android.databinding.FragmentFundingRewardBinding
+import com.example.a8th_hackathon_android.home.AllFragment
+import com.example.a8th_hackathon_android.model.ProjectViewModel
 import com.example.a8th_hackathon_android.model.RewardDto
+import com.example.a8th_hackathon_android.model.RewardRequest
 import com.example.a8th_hackathon_android.model.RewardViewModel
+import kotlinx.coroutines.launch
 
 class FundingRewardFragment : Fragment() {
     private lateinit var binding: FragmentFundingRewardBinding
     private val rewardViewModel: RewardViewModel by activityViewModels()
+    private val projectViewModel: ProjectViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -27,10 +35,7 @@ class FundingRewardFragment : Fragment() {
         }
 
         binding.btnNext.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, FundingAddFragment())
-                .addToBackStack(null)
-                .commit()
+            submitProjectToServer()
         }
 
         return binding.root
@@ -63,5 +68,58 @@ class FundingRewardFragment : Fragment() {
         binding.rewardName.setText("")
         binding.rewardNumber.setText("")
         binding.rewardPrice.setText("")
+    }
+
+    private fun submitProjectToServer() {
+        val rewardDtos = rewardViewModel.getRewardList()
+
+        if (rewardDtos.isEmpty()) {
+            Toast.makeText(requireContext(), "최소 1개의 리워드를 추가해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val rewards = rewardDtos.map {
+            RewardRequest(
+                title = it.title,
+                stock = it.stock,
+                price = it.price
+            )
+        }
+
+        // ViewModel에 반영
+        projectViewModel.updateRewards(rewards)
+
+        val request = projectViewModel.request.value
+        if (request == null) {
+            Toast.makeText(requireContext(), "프로젝트 정보가 없습니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // ✅ 하드코딩 토큰 사용
+        val hardcodedToken = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzUxNzU1OTc4LCJleHAiOjE3NTIxMTU5Nzh9.EvPTfKYV6RIs96sxleyfkA8zZs-2RpTI6Ma9xzwcK6Q"
+
+        val projectApi = RetrofitClient.projectApi
+
+        lifecycleScope.launch {
+            try {
+                val response = projectApi.registerProject(
+                    token = hardcodedToken,
+                    request = request
+                )
+
+                if (response.isSuccessful) {
+                    Toast.makeText(requireContext(), "등록 성공!", Toast.LENGTH_SHORT).show()
+
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container_view, AllFragment())
+                        .addToBackStack(null)
+                        .commit()
+                } else {
+                    Toast.makeText(requireContext(), "등록 실패 (${response.code()})", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "서버 오류 발생: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

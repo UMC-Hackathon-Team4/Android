@@ -6,10 +6,14 @@ import androidx.lifecycle.ViewModel
 
 class RewardViewModel : ViewModel() {
     private val _rewards = MutableLiveData<MutableList<RewardDto>>(mutableListOf())
-    val rewards: LiveData<MutableList<RewardDto>> = _rewards
+    val rewards: LiveData<MutableList<RewardDto>> get() = _rewards
 
     fun addReward(reward: RewardDto) {
         _rewards.value?.add(reward)
         _rewards.value = _rewards.value // LiveData 갱신
+    }
+
+    fun getRewardList(): List<RewardDto> {
+        return _rewards.value ?: emptyList()
     }
 }
