@@ -9,6 +9,7 @@ import com.example.a8th_hackathon_android.model.ProjectRegisterResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -16,6 +17,7 @@ import retrofit2.http.Query
 interface ProjectApi {
     @POST("/projects")
     suspend fun registerProject(
+        @Header("Authorization") token: String,
         @Body request: ProjectRegisterRequest
     ): Response<ProjectRegisterResponse>
     @GET("/projects/best")
