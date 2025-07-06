@@ -16,10 +16,10 @@
 
 ### 🙌 팀원 소개
 
-|곽선호|채윤지|장용근|
+|황승민|채윤지|장용근|
 |:---:|:---:|:---:|
 |<img src="https://github.com/sxunxin.png"  width="300" height="230">|<img src="https://github.com/KateteDeveloper.png"  width="300" height="230">|<img src="https://github.com/james4510.png"  width="300" height="230">|
-|[@ugmin1030](https://github.com/sxunxin)|[@KateteDeveloper](https://github.com/KateteDeveloper)|[@Hongji03](https://github.com/james4510)|
+|[@sxunxin](https://github.com/sxunxin)|[@KateteDeveloper](https://github.com/KateteDeveloper)|[@james4510](https://github.com/james4510)|
 <br/>
 
 # Tech Stack
